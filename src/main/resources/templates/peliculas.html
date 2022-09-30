@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/master :: head">
         <meta charset="UTF-8" />
-        <title>Inicio | MovieApp</title>
+        <title>Peliculas | MovieApp</title>
     </head>
     <body>
 
@@ -12,15 +12,11 @@
 
         <div layout:fragment = "content">
 
-            <div class="bg-light p-5 rounded">
-                <h1 class="display-5 text-success text-center fw-bold">Bienvenido a MovieApp</h1>
-                <h5 class="text-center">Disfruta de tus trailers favoritos sin costo alguno</h5>
-            </div>
+            <div class="container mt-5">
+                <h4>Todas las películas</h4>
 
-            <div class="container">
-                <h4 class="text-danger mt-5 fw-bold">Últimos estrenos</h4>
                 <div class="row">
-                    <div class="col-md-3 my-5" th:each="pelicula : ${ultimasPeliculas}"
+                    <div class="col-md-3 my-5" th:each="pelicula : ${peliculas}"
                          th:object="${pelicula}">
                         <a th:href="@{/peliculas/{id}(id=*{id})}" class="card shadow-lg"
                            style="text-decoration: none;">
@@ -29,11 +25,23 @@
                                  class="card-img-top">  
                             <div class="card-body">
                                 <h2 class="card-title fs-6" th:text="*{titulo}"></h2>
-                                <p th:text="*{#temporals.format(fechaEstreno, 'dd/MM/yyyy')}"
+                                <p th:text="*{#temporals.format(fechaEstreno, 'dd/mm/yyyy')}"
                                    class="text-muted small"></p>
                             </div>
                         </a>
                     </div>
+
+                    <div class="row mt-5" th:with="page=${peliculas}">
+                        <div class="col-sm-6">
+                            <div sd:pagination-summary></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <nav>
+                                <ul class="pagination" sd:pagination="full"></ul>
+                            </nav>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

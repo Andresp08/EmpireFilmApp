@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/master :: head">
+        <meta charset="UTF-8" />
+        <title>Detalles | MovieApp</title>
+    </head>
+    <body>
+        <header th:replace="/master :: header"></header>
+
+        <div layout:fragment = "content" th:object="${pelicula}">
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}"
+                             alt="*{pelicula.titulo}"
+                             class="img-fluid rounded w-100">  
+                    </div>
+                    <div class="col-md-6">
+                        <h3 th:text="*{titulo}"></h3>
+                        <div class="mb-3">
+                            <span class="badge rounded-pull me-1" style="background-color: #06283D; color: #FFF;"
+                                  th:each="genero : *{generos}"
+                                  th:text="${genero.titulo}"></span>
+                        </div>
+                        <p th:text="*{sinopsis}" style="text-align: justify;"></p>
+                        <label class="fw-bold">Fecha de estreno: </label>
+                        <span class="badge" style="background-color: #06283D; color: #FFF;" 
+                            th:text="*{#temporals.format(fechaEstreno, 'dd/MM/yyyy')}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
