@@ -52,13 +52,11 @@
                             <a class="btn btn-secondary mb-2" th:href="@{admin/peliculas/{id}/editar(id=*{id})}"
                                >
                                 <i class="fas fa-edit"></i>
-                                Editar
                             </a>
 
                             <a class="btn btn-danger" href="javascript:void(0)" 
                                th:onclick="'eliminarPelicula('+ *{id} +')'">
                                 <i class="fas fa-trash"></i>
-                                Eliminar
                             </a>
                             <form th:id="'eliminarPeliculaForm' + *{id}"
                                   th:action="@{admin/peliculas/{id}/eliminar(id=*{id})}"

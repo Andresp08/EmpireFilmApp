@@ -61,7 +61,7 @@
                 </div><!--mb-3-->
 
                 <div class="mb-3">
-                    <label for="generos" class="form-label">Youtube Trailer ID</label>
+                    <label for="generos" class="form-label">Generos: </label>
                     <select id="generos" class="form-control select2" th:field="*{generos}"
                             multiple>
                         <option th:each="genero : ${generos}" th:value="${genero.id}"
